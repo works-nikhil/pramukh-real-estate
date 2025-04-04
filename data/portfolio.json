@@ -9,9 +9,9 @@
   "darkMode": true,
   "showResume": false,
   "socials": [
-    { "id": "1", "title": "Phone", "link": "tel:555-555-1212" },
-    { "id": "2", "title": "Email", "link": "mailto:business@pramukhrealestate.com?subject=Interested in a Property&body=Hi, Let's connect :)" },
-    { "id": "3", "title": "WhatsApp", "link": "https://wa.me/7017007840?text=Hello!" }
+    { "id": "1", "title": "Phone", "link": "tel:+971585613686" },
+    { "id": "2", "title": "Email", "link": "mailto:admin@pramukhrealestate.com?subject=Property Inquiry&body=Hi, I am interested in learning more about your properties. Let's connect!" },
+    { "id": "3", "title": "WhatsApp", "link": "https://wa.me/+971585613686?text=Hi, I am interested in learning more about your properties. Let's connect!" }
   ],
   "projects": [
     {

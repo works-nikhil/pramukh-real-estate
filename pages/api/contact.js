@@ -1,81 +1,61 @@
 import { Client } from "@notionhq/client";
 
+const notion = new Client({
+  auth: process.env.NOTION_API_KEY,
+});
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
-  const { name, email, phone, requirements } = req.body;
-
-  // Validate required fields
-  if (!name || !email || !requirements) {
-    return res.status(400).json({ error: 'Name, email, and requirements are required' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    // Initialize Notion client
-    const notion = new Client({
-      auth: process.env.NOTION_API_KEY,
-    });
-
-    // Create a new page in the contact submissions database
+    // Create a new page in the Notion database
     const response = await notion.pages.create({
       parent: {
-        database_id: process.env.NOTION_CONTACT_DATABASE_ID,
+        type: "database_id",
+        database_id: process.env.NOTION_CONTACT_DATABASE_ID
       },
       properties: {
         Name: {
           title: [
             {
               text: {
-                content: name,
-              },
-            },
-          ],
+                content: req.body.name
+              }
+            }
+          ]
         },
         Email: {
-          email: email,
+          email: req.body.email
         },
-        Phone: {
-          rich_text: [
-            {
-              text: {
-                content: phone || 'Not provided',
-              },
-            },
-          ],
+        Contact: {
+          phone_number: req.body.phone
         },
         Requirements: {
           rich_text: [
             {
               text: {
-                content: requirements,
-              },
-            },
-          ],
+                content: req.body.requirements
+              }
+            }
+          ]
         },
         Status: {
-          select: {
-            name: 'New',
-          },
-        },
-        Date: {
-          date: {
-            start: new Date().toISOString(),
-          },
-        },
-      },
+          status: {
+            name: "New"
+          }
+        }
+      }
     });
-
-    console.log('Contact form submission saved to Notion:', response.id);
     
-    res.status(200).json({ 
-      success: true, 
-      message: 'Contact form submitted successfully' 
+    return res.status(200).json({ 
+      message: 'Contact form submitted successfully',
+      pageId: response.id 
     });
   } catch (error) {
-    console.error('Error saving contact form to Notion:', error);
-    res.status(500).json({ 
+    console.error('Error creating Notion page:', error);
+    return res.status(500).json({ 
       error: 'Failed to submit contact form',
       details: error.message 
     });

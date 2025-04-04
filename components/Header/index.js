@@ -13,10 +13,12 @@ const Header = ({
   handlePropertyScroll,
 }) => {
   const router = useRouter();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme("dark");
   const [mounted, setMounted] = useState(false);
 
-  const { name, showBlog, showResume } = data;
+  const isContactPage = router.pathname === "/contact";
+
+  const { name } = data;
 
   useEffect(() => {
     setMounted(true);
@@ -36,20 +38,14 @@ const Header = ({
               </h1>
 
               <div className="flex items-center">
-                {data.darkMode && (
-                  <Button
-                    onClick={() =>
-                      setTheme(theme === "dark" ? "light" : "dark")
-                    }
-                  >
-                    <img
-                      className="h-6"
-                      src={`/images/${
-                        theme === "dark" ? "moon.svg" : "sun.svg"
-                      }`}
-                    ></img>
-                  </Button>
-                )}
+                <Button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  <img
+                    className="h-6"
+                    src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
+                  ></img>
+                </Button>
 
                 <Popover.Button>
                   <img
@@ -76,17 +72,6 @@ const Header = ({
                 <Button onClick={() => router.push("/")} classes="first:ml-1">
                   Home
                 </Button>
-                {/* {showBlog && (
-                    <Button onClick={() => router.push("/blog")}>Blog</Button>
-                  )} */}
-                {/* {showResume && (
-                    <Button
-                      onClick={() => router.push("/resume")}
-                      classes="first:ml-1"
-                    >
-                      Resume
-                    </Button>
-                  )} */}
 
                 <Button
                   onClick={() => window.open("mailto:hello@chetanverma.com")}
@@ -109,26 +94,35 @@ const Header = ({
         >
           {name}.
         </h1>
-        <div className="flex">
-          <Button onClick={handleProjectScroll}>Projects</Button>
-          <Button onClick={handleServicesScroll}>Services</Button>
-          <Button onClick={handlePropertyScroll}>Properties</Button>
-          <Button onClick={handleAboutScroll}>About</Button>
+        {isContactPage && (
+          <h1
+            onClick={() => router.push("/")}
+            className="font-medium cursor-pointer mob:p-2 laptop:p-0"
+          >
+            Home.
+          </h1>
+        )}
 
-          <Button onClick={() => window.open("mailto:hello@chetanverma.com")}>
-            Contact
-          </Button>
-          {mounted && theme && data.darkMode && (
-            <Button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              <img
-                className="h-6"
-                src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
-              ></img>
-            </Button>
-          )}
-        </div>
+        {!isContactPage && (
+          <div className="flex">
+            <Button onClick={handleProjectScroll}>Upcoming</Button>
+            <Button onClick={handleServicesScroll}>Services</Button>
+            <Button onClick={handlePropertyScroll}>Properties</Button>
+            <Button onClick={handleAboutScroll}>About</Button>
+
+            <Button onClick={() => router.push("/contact")}>Contact</Button>
+            {mounted && theme && data.darkMode && (
+              <Button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                <img
+                  className="h-6"
+                  src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
+                ></img>
+              </Button>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
+import Cursor from "../components/Cursor";
 import data from "../data/portfolio.json";
 
 const Contact = () => {
@@ -34,6 +35,7 @@ const Contact = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Notion-Version': '2022-06-28',
         },
         body: JSON.stringify(formData),
       });
@@ -69,6 +71,7 @@ const Contact = () => {
 
   return (
     <div className={`relative ${data.showCursor && "cursor-none"}`}>
+      {data.showCursor && <Cursor />}
       <Head>
         <title>Contact Us | {data.name}</title>
       </Head>

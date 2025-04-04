@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
+import { useRouter } from "next/router";
 import Header from "../components/Header";
 import ServiceCard from "../components/ServiceCard";
 import Socials from "../components/Socials";
@@ -30,6 +31,7 @@ export default function Home() {
   const textTwo = useRef();
   const textThree = useRef();
   const textFour = useRef();
+  const router = useRouter();
 
   const [notionData, setNotionData] = useState({
     propertyListings: [],
@@ -173,7 +175,7 @@ export default function Home() {
                     img={projectImage}
                     name={projectName}
                     description={projectArea}
-                    onClick={() => window.open(project.url)}
+                    onClick={() => router.push("/contact")}
                   />
                 );
               })}
@@ -184,7 +186,7 @@ export default function Home() {
         {/* Services */}
         {!loading && (
           <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={servicesRef}>
-            <h1 className="tablet:m-10 text-2xl text-bold">Services.</h1>
+            <h1 className="text-2xl text-bold">Services.</h1>
             <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
               {notionData?.servicesListings?.map((service) => {
                 const serviceName =
@@ -196,6 +198,7 @@ export default function Home() {
                     key={service.id}
                     name={serviceName}
                     description={serviceDescription}
+                    onClick={() => router.push("/contact")}
                   />
                 );
               })}
@@ -228,7 +231,7 @@ export default function Home() {
                     description={developerName}
                     area={projectArea}
                     price={propertyPrice}
-                    onClick={() => window.open(project.url)}
+                    onClick={() => router.push("/contact")}
                   />
                 );
               })}
@@ -238,22 +241,22 @@ export default function Home() {
 
         {/* About us */}
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-          <h1 className="tablet:m-10 text-2xl text-bold">About.</h1>
+          <h1 className="text-2xl text-bold">About.</h1>
           <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
             {data.aboutpara}
           </p>
         </div>
 
-        {/* Contact Us */}
+        {/* Contact Us
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0">
-          <h1 className="tablet:m-10 text-2xl text-bold">Contact Us.</h1>
+          <h1 className="text-2xl text-bold">Contact Us.</h1>
           <div className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
-            <p className="mb-4">Have a question or want to work with us? Get in touch!</p>
+            <p className="mb-4">Have a question? Get in touch! 😊</p>
             <Link href="/contact">
               <Button type="primary">Contact Us</Button>
             </Link>
           </div>
-        </div>
+        </div> */}
 
         {/* Footer */}
         <Footer />
