@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import { v4 as uuidv4 } from "uuid";
@@ -15,7 +15,8 @@ const Edit = () => {
   const { theme } = useTheme();
 
   const saveData = () => {
-    if (process.env.NODE_ENV === "development") {
+    const password = prompt("Please enter the edit password:");
+    if (password === "admin123") { // You can change this password to whatever you want
       fetch("/api/portfolio", {
         method: "POST",
         headers: {
@@ -24,7 +25,7 @@ const Edit = () => {
         body: JSON.stringify(data),
       });
     } else {
-      alert("This thing only works in development mode.");
+      alert("Incorrect password. Changes not saved.");
     }
   };
 

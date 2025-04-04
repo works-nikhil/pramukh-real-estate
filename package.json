@@ -1,6 +1,8 @@
 {
-  "name": "react-portfolio-template",
-  "version": "3.0",
+  "name": "pramukh-real-estate",
+  "version": "1.0.0",
+  "description": "A real estate website built with Next.js and Tailwind CSS.",
+  "author": "Nikhil Bhojwani",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,6 +12,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
+    "@notionhq/client": "^2.3.0",
     "autoprefixer": "^10.4.7",
     "custom-cursor-react": "^1.0.5",
     "gray-matter": "^4.0.3",
