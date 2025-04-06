@@ -111,7 +111,7 @@ const Header = ({
             <Button onClick={handleAboutScroll}>About</Button>
 
             <Button onClick={() => router.push("/contact")}>Contact</Button>
-            {mounted && theme && data.darkMode && (
+            {mounted && theme && (
               <Button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
