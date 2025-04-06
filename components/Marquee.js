@@ -18,6 +18,8 @@ const BrandMarquee = () => {
     { name: 'Brand Logo 11', logo: '/logos/white11.png' },
     { name: 'Brand Logo 12', logo: '/logos/white12.png' },
     { name: 'Brand Logo 13', logo: '/logos/white13.png' },
+    { name: 'Brand Logo 14', logo: '/logos/white14.png' },
+    { name: 'Brand Logo 15', logo: '/logos/white15.png' },
   ]).flat();
 
   const logoItemsBlack = Array(5).fill([
@@ -34,6 +36,8 @@ const BrandMarquee = () => {
     { name: 'Brand Logo 11', logo: '/logos/black11.png' },
     { name: 'Brand Logo 12', logo: '/logos/black12.png' },
     { name: 'Brand Logo 13', logo: '/logos/black13.png' },
+    { name: 'Brand Logo 14', logo: '/logos/black14.png' },
+    { name: 'Brand Logo 15', logo: '/logos/black15.png' },
   ]).flat();
 
   const { theme, setTheme } = useTheme("dark");
