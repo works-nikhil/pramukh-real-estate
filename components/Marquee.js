@@ -50,8 +50,8 @@ const BrandMarquee = () => {
       <div className="mt-10 laptop:mt-30 p-2 laptop:p-0 relative">
         {theme === 'dark' ? (
           <>
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#131312] to-transparent z-10"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#131312] to-transparent z-10"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#000000] to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#000000] to-transparent z-10"></div>
           </>
         ) : (
           <>
