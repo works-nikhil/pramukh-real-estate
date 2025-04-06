@@ -7,7 +7,6 @@ const BrandMarquee = () => {
   // Create an array of 5 items to duplicate the logo for a fuller marquee
   const logoItemsWhite = Array(5).fill([
     { name: 'Brand Logo 1', logo: '/logos/white1.png' },
-    { name: 'Brand Logo 2', logo: '/logos/white2.png' },
     { name: 'Brand Logo 3', logo: '/logos/white3.png' },
     { name: 'Brand Logo 4', logo: '/logos/white4.png' },
     { name: 'Brand Logo 5', logo: '/logos/white5.png' },
@@ -61,7 +60,7 @@ const BrandMarquee = () => {
         )}
         <Marquee
           gradient={false}
-          speed={40}
+          speed={50}
           pauseOnHover={true}
           direction="left"
           className="py-4"
